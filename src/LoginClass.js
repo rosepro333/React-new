@@ -34,6 +34,7 @@ enquiries:[
     // "enquiry 2"
 ]
 
+
 }
 onUserNameChange = (event)=>{
 
@@ -51,24 +52,30 @@ onPasswordChange = (event)=>{
 handleSubmit = (event)=>{
 
     event.preventDefault(); //to prevent page reload 
+    
    
 
   Bankservice.authenticateUser(this.state.username,this.state.password)
- .then(data=>{
-     alert(this.state.username)
-     alert(this.state.password)
-    alert("logged in");
-     localStorage.setItem("token",data.token);
+  .then(data=>{
+      alert(this.state.username)
+      alert(this.state.password)
+     // alert("logged in");
+  console.log(data)
+      alert(data.data.message)
+      alert(data.data.token)
+    //console.log(this.props.history)
+    localStorage.setItem("token",data.data.token);
      this.props.history.push('/home');
     
-  })
+   })
+  
 
 }
 
 
     render(){
         return <div className="world">
-         {
+          {
             //  this.state.enquiries.map(enquiry=><div>{enquiry}</div>)
             this.state.enquiries.map(enquiry=> <Test key={enquiry} text={enquiry}/>)
          }
@@ -77,24 +84,24 @@ handleSubmit = (event)=>{
          }
         
          <Test text="world"/>
-         <Test text="test"/>
+         <Test text="test"/> 
 
-        <h1 style={{textAlign:'center',marginTop:"8%",color:"white"}}>Login SBI BANK</h1>
+        <h1 style={{textAlign:'center',paddingTop:'8%',color:"white"}}>Login SBI BANK</h1>
         <form onSubmit={this.handleSubmit}>
    
            <div className="form-group">
-           <label for="" className="formlabel">username</label>
+           <label for="" className="form-label">username</label>
            <input type="text" onChange={this.onUserNameChange} className="form-control" id="username" aria-describedby="emailHelp" />
-           <label for="" id="uinvalid" ></label>
+           <div  id="uinvalid" ></div>
            </div>
    
            <div className="form-group">
-           <label for="" className="formlabel">Password</label>
+           <label for="" className="form-label">Password</label>
            <input type="password" onChange={this.onPasswordChange} className="form-control" id="password" />
            <div id="pinvalid" className="form-text"></div> 
            </div>
        
-           <button type="submit"  className="btn btn-primary">Login</button>
+         <button type="submit"  className="btn btn-primary" style={{marginLeft:"650px",marginTop:'3%'}}>Login</button>
    
          </form>
    

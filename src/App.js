@@ -1,9 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './Login';
+import Home from './Home';
 import LoginClass from './LoginClass';
 import TestClass from './TestClass'
 import { BrowserRouter ,Route, Switch } from 'react-router-dom';
+import HomeClass from './HomeClass';
 
 function App() {
   // const name="HELLO WORLD"
@@ -15,13 +17,19 @@ function App() {
 
             <Route exact={true} path="/">
             <LoginClass></LoginClass>
-        
             </Route>
+
             <Route path="/home">
-            <LoginClass></LoginClass> 
+            <HomeClass></HomeClass>
             </Route>
-            <Route exact={true} path="/login2">
+
+            <Route path="/login2">
             <Login></Login>
+            </Route>
+
+            
+            <Route path="/home2">
+            <Home></Home>
             </Route>
 
         </Switch>

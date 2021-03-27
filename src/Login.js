@@ -1,6 +1,8 @@
 import Test from './Test';
 import './Login.css';
  import { useState, useEffect } from 'react';
+ import Bankservice from './services/bankservice';
+ import { useHistory,withRouter} from 'react-router-dom';
 
 function Login(){
    const [username,setUsername] = useState("");
@@ -25,30 +27,39 @@ const onPasswordChange = (event)=>{
   setPassword(event.target.value);
   
 }
+
+ const history = useHistory();
  const handleSubmit = (event)=>{
 
   event.preventDefault(); //to prevent page reload 
-  alert(username);
-  alert(password);
- 
-// Bankservice.authenticateUser(username,password)
-// .then(data=>{
-//    alert(this.state.username)
-//    alert(this.state.password)
-//   alert("logged in");
-//    localStorage.setItem("token",data.token);
-//    this.props.history.push('/home');
   
-// })
+ 
+ 
+  Bankservice.authenticateUser(username,password)
+  .then(data=>{
+      alert(username)
+      alert(password)
+     // alert("logged in");
+  console.log(data)
+      alert(data.data.message)
+      alert(data.data.token)
+
+   
+    localStorage.setItem("token",data.data.token);
+    console.log(history)
+    history.push("/home2");
+
+    
+   })
 
 }
 
 
        // return <h1>login here<Test></Test></h1>
 
-     return <div className="container">
+     return <div className="world">
 
-     <h1 style={{textAlign:'center',marginTop:"8%"}}>Login SBI BANK</h1>
+     <h1 style={{textAlign:'center',paddingTop:'8%',color:"white"}}>Login SBI BANK</h1>
      {
             //  this.state.enquiries.map(enquiry=><div>{enquiry}</div>)
             enquiries.map(enquiry=> <Test key={enquiry} text={enquiry}/>)
@@ -68,7 +79,7 @@ const onPasswordChange = (event)=>{
         <div id="pinvalid" className="form-text"></div> 
         </div>
     
-        <button type="submit" className="btn btn-primary">Login</button>
+        <button type="submit" className="btn btn-primary" style={{marginLeft:"650px",marginTop:'3%'}}>Login</button>
 
       </form>
 
@@ -78,4 +89,4 @@ const onPasswordChange = (event)=>{
 
 }
 
-export default Login;
+export default withRouter (Login);

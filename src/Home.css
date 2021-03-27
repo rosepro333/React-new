@@ -1,0 +1,21 @@
+.home{
+    background-image: url('./assets/bank2.jpg'); 
+    /* background-color: violet; */
+   background-repeat: no-repeat;
+   background-size:100% 100%;
+   height:100%;
+   width:100%;
+
+   }
+
+.form-control{
+    width:600px;
+    margin-left:370px;
+}
+.form-label{
+    color: rgb(255, 251, 254);
+    font-weight: 600;
+    font-size:20px;
+    margin-left:370px;     
+   
+}
